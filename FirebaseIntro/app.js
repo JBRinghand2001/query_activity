@@ -264,7 +264,7 @@
 //     })
 // });
 // ...and Barcelona
-db.collection('Teams')
+// db.collection('Teams')
 //     .where('name', '==', 'FC Barcelona')
 //     .get()
 //     .then((querySnapshot) => {
