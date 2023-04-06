@@ -1,36 +1,348 @@
-// insert data
-let john = {
-    name: "john",
-    age: 25, 
-    married: false,
-    favorites: {
-        color: "green",
-        city: "Madison"
-    },
-    siblings: ['mike', 'amy', 'jackie']
-}
+// ***TASK 1
+// Create 7 objects
+// let Real_Madrid = {
+//     name: "Real Madrid",
+//     city: 'Madrid',
+//     country: 'Spain',
+//     top_scorers: ['Ronaldo', 'Benzema', 'Hazard'],
+//     worldwide_fans: 798
+// }
 
-let derek = {
-    name: "derek",
-    age: 27, 
-    married: true,
-    favorites: {
-        color: "red",
-        city: "Madison"
-    },
-    siblings: ['mike', 'peter', 'neil']
-}
+// let Barcelona = {
+//     name: "Barcelona",
+//     city: 'Barcelona',
+//     country: 'Spain',
+//     top_scorers: ['Messi', 'Suarez', 'Puyol'],
+//     worldwide_fans: 738
+// }
 
-let sally = {
-    name: "sally",
-    age: 40, 
-    married: false,
-    favorites: {
-        color: "blue",
-        city: "Chicago"
-    },
-    siblings: ['neil']
-}
+// let Manchester_United = {
+//     name: "Manchester United",
+//     city: 'Manchester',
+//     country: 'England',
+//     top_scorers: ['Cantona', 'Rooney', 'Ronaldo'],
+//     worldwide_fans: 755
+// }
+
+// let Manchester_City = {
+//     name: "Manchester City",
+//     city: 'Manchester',
+//     country: 'England',
+//     top_scorers: ['Sterling', 'Aguero', 'Haaland'],
+//     worldwide_fans: 537
+// }
+
+// let Brazil_National = {
+//     name: "Brazil National Team",
+//     city: 'N/A',
+//     country: 'Brazil',
+//     top_scorers: ['Ronaldinho', 'Cafu', 'Bebeto'],
+//     worldwide_fans: 950
+// }
+
+// let Argentina_National = {
+//     name: "Argentina National Team",
+//     city: 'N/A',
+//     country: 'Argentina',
+//     top_scorers: ['Messi', 'Batistuta', 'Maradona'],
+//     worldwide_fans: 888
+// }
+
+// let Atletico_Madrid = {
+//     name: "Atletico Madrid",
+//     city: 'Madrid',
+//     country: 'Spain',
+//     top_scorers: ['Aragones', 'Griezmann', 'Torez'],
+//     worldwide_fans: 400
+// }
+
+// db.collection('Teams').add(Real_Madrid);
+// db.collection('Teams').add(Barcelona);
+// db.collection('Teams').add(Manchester_United);
+// db.collection('Teams').add(Manchester_City);
+// db.collection('Teams').add(Brazil_National);
+// db.collection('Teams').add(Argentina_National);
+// db.collection('Teams').add(Atletico_Madrid);
+
+// ***TASK 2
+// 1. Show all teams in Spain
+// db.collection('Teams').where('country', '==', 'Spain')
+// .get().then(response => {
+//     let docs = response.docs;
+//     // loop through the docs array
+//     docs.forEach(doc => {
+//         console.log(doc.data().name);
+//     });
+// });
+
+// 2. Show all teams in Madrid, Spain
+// db.collection('Teams').where('country', '==', 'Spain').where('city', '==', 'Madrid')
+// .get().then(response => {
+//     let docs = response.docs;
+//     // loop through the docs array
+//     docs.forEach(doc => {
+//         console.log(doc.data().name);
+//     });
+// });
+
+// 3. Show all national teams
+// db.collection('Teams')
+//   .get()
+//   .then((querySnapshot) => {
+//     querySnapshot.forEach((doc) => {
+//       if (doc.data().name.toLowerCase().includes('national')) {
+//         console.log(doc.data().name);
+//       }
+//     });
+//   });
+
+// 4. Show all teams that are not in Spain
+// db.collection('Teams').where('country', '!=', 'Spain')
+// .get().then(response => {
+//     let docs = response.docs;
+//     // loop through the docs array
+//     docs.forEach(doc => {
+//         console.log(doc.data().name);
+//     });
+// });
+
+// 5. Show all teams that are not in Spain or England
+// db.collection('Teams').where('country', 'not-in', ['Spain', 'England'])
+// .get().then(response => {
+//     let docs = response.docs;
+//     // loop through the docs array
+//     docs.forEach(doc => {
+//         console.log(doc.data().name);
+//     });
+// });
+
+// 6. Show all teams in Spain with more than 700M fans
+// db.collection('Teams').where('country', '==', 'Spain').where('worldwide_fans', '>', 700)
+// .get().then(response => {
+//     let docs = response.docs;
+//     // loop through the docs array
+//     docs.forEach(doc => {
+//         console.log(doc.data().name);
+//     });
+// });
+
+// 7. Show all teams with a number of fans in the range of 500M and 600M
+// db.collection('Teams').where('worldwide_fans', '>=', 500).where('worldwide_fans', '<=', 600)
+// .get().then(response => {
+//     let docs = response.docs;
+//     // loop through the docs array
+//     docs.forEach(doc => {
+//         console.log(doc.data().name);
+//     });
+// });
+
+// 8. Show all teams where Ronaldo is a top scorer
+// db.collection('Teams').where('top_scorers', 'array-contains', 'Ronaldo')
+// .get().then(response => {
+//     let docs = response.docs;
+//     // loop through the docs array
+//     docs.forEach(doc => {
+//         console.log(doc.data().name);
+//     });
+// });
+
+// 9. Show all teams where ROnaldo, Maradona, or Messi is a top scorer
+// db.collection('Teams').where('top_scorers', 'array-contains-any', ['Ronaldo', 'Maradona', 'Messi'])
+// .get().then(response => {
+//     let docs = response.docs;
+//     // loop through the docs array
+//     docs.forEach(doc => {
+//         console.log(doc.data().name);
+//     });
+// });
+
+// ***TASK 3A
+// 1. Update Real Madrid to 811M Worldwide fans & change team name to Real Madrid FC
+// db.collection('Teams')
+//   .where('name', '==', 'Real Madrid')
+//   .get()
+//   .then((querySnapshot) => {
+//     querySnapshot.docs[0].ref.update({
+//       worldwide_fans: 811,
+//       name: 'Real Madrid FC'
+//     });
+//   });
+
+// 2. Update Barcelona to 747M Worldwide fans & change team name to FC Barcelona
+// db.collection('Teams')
+//   .where('name', '==', 'Barcelona')
+//   .get()
+//   .then((querySnapshot) => {
+//     querySnapshot.docs[0].ref.update({
+//       worldwide_fans: 747,
+//       name: 'FC Barcelona'
+//     });
+//   });
+
+// 3. Update the top_scorers array in Real Madrid to remove Hazard
+// db.collection('Teams')
+//   .where('name', '==', 'Real Madrid FC')
+//   .get()
+//   .then((querySnapshot) => {
+//     querySnapshot.docs[0].ref.update({
+//       top_scorers: firebase.firestore.FieldValue.arrayRemove('Hazard'),
+//     })
+//   });
+// ...then add Crispo
+// db.collection('Teams')
+//     .where('name', '==', 'Real Madrid FC')
+//     .get()
+//     .then((querySnapshot) => {
+//     querySnapshot.docs[0].ref.update({
+//         top_scorers: firebase.firestore.FieldValue.arrayUnion('Crispo'),
+//     })
+// });
+
+// 4. Update the top_scorers array in Barcelona to remove Puyol
+// db.collection('Teams')
+//   .where('name', '==', 'FC Barcelona')
+//   .get()
+//   .then((querySnapshot) => {
+//     querySnapshot.docs[0].ref.update({
+//       top_scorers: firebase.firestore.FieldValue.arrayRemove('Puyol'),
+//     })
+//   });
+// ...then add Deco
+// db.collection('Teams')
+//     .where('name', '==', 'FC Barcelona')
+//     .get()
+//     .then((querySnapshot) => {
+//     querySnapshot.docs[0].ref.update({
+//         top_scorers: firebase.firestore.FieldValue.arrayUnion('Deco'),
+//     })
+// });
+
+// ***TASK 3B
+// 1. Create 'color' object
+// let color = {
+//     home: '',
+//     away: ''
+// }
+
+// 2. Update all docs in firebase to include the blank 'color' object
+// db.collection('Teams').get().then((querySnapshot) => {
+//     querySnapshot.forEach((doc) => {
+//       doc.ref.update({
+//         color: color
+//       });
+//     });
+//   });
+
+// 3. Add the Jersey Colors for Real Madrid...
+// db.collection('Teams')
+//     .where('name', '==', 'Real Madrid FC')
+//     .get()
+//     .then((querySnapshot) => {
+//     querySnapshot.docs[0].ref.update({
+//         'color.home': 'White',
+//         'color.away': 'Black'
+//     })
+// });
+// ...and Barcelona
+// db.collection('Teams')
+//     .where('name', '==', 'FC Barcelona')
+//     .get()
+//     .then((querySnapshot) => {
+//     querySnapshot.docs[0].ref.update({
+//         'color.home': 'Red',
+//         'color.away': 'Gold'
+//     })
+// });
+
+// 4. Update the jersey colors for Real Madrid...
+// db.collection('Teams')
+//     .where('name', '==', 'Real Madrid FC')
+//     .get()
+//     .then((querySnapshot) => {
+//     querySnapshot.docs[0].ref.update({
+//         'color.away': 'Purple'
+//     })
+// });
+// ...and Barcelona
+db.collection('Teams')
+//     .where('name', '==', 'FC Barcelona')
+//     .get()
+//     .then((querySnapshot) => {
+//     querySnapshot.docs[0].ref.update({
+//         'color.away': 'Pink'
+//     })
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ***IN-CLASS WORK
+// // insert data
+// let john = {
+//     name: "john",
+//     age: 25, 
+//     married: false,
+//     favorites: {
+//         color: "green",
+//         city: "Madison"
+//     },
+//     siblings: ['mike', 'amy', 'jackie']
+// }
+
+// let derek = {
+//     name: "derek",
+//     age: 27, 
+//     married: true,
+//     favorites: {
+//         color: "red",
+//         city: "Madison"
+//     },
+//     siblings: ['mike', 'peter', 'neil']
+// }
+
+// let sally = {
+//     name: "sally",
+//     age: 40, 
+//     married: false,
+//     favorites: {
+//         color: "blue",
+//         city: "Chicago"
+//     },
+//     siblings: ['neil']
+// }
 
 // store the objects
 
